@@ -12,9 +12,27 @@ class GraphNode {
 
 function findLegalColor(graph, colors) {
   // we need to move through every node in the graph
-    // check for loop
+  graph.forEach((graphNode) => {
+    if (graphNode.neighbors.has(graphNode)) {
+      throw new Error('no legal color for a loop');
+    }
 
-    // check all neighbors' colors and add to illegal set
-
+    let forbiddenColors = new Set();
+  // check all neighbors' colors and add to illegal set
+    graphNode.neighbors.forEach((neighbor) => {
+      if (neighbor.color !== null) {
+        forbiddenColors.add(neighbor.color);
+      }
+    })
     // look through colors and the first one that isn't illegal, add to the current node
+    for (let i = 0; i < colors.length; i++){
+      let colorOption = colors[i];
+
+      if(!forbiddenColors.has(colorOption)) {
+        graphNode.color = colorOption;
+        break;
+      }
+    }
+  });
+  // check for loop
 }
