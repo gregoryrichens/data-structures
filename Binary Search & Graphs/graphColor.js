@@ -29,10 +29,10 @@ function findLegalColor(graph, colors) {
       let colorOption = colors[i];
 
       if(!forbiddenColors.has(colorOption)) {
+        // set color if it is free
         graphNode.color = colorOption;
         break;
       }
     }
   });
-  // check for loop
 }
