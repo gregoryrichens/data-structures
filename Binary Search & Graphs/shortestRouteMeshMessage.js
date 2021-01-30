@@ -1,4 +1,4 @@
-/ Assume we have an efficient queue implementation, Queue()
+// Assume we have an efficient queue implementation, Queue()
 // with enqueue and dequeue methods and a size property
 
 function reconstructPath(howWeReachedNodes, startNode, endNode) {
