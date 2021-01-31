@@ -1,14 +1,17 @@
 // iterative bfs
 
 function bfs(graph, startPoint, endPoint) {
+  let path = [];
   let queue = [];
   queue.push(startPoint);
 
   let visited = new Set();
+  visited.add(startPoint);
 
   while (queue.length > 0 ) {
     let nodeInQuestion = queue.shift();
-    let neighbors = graph[nodeInQuestion];
+    path.push(nodeInQuestion);
+    let neighbors = graph[adjacencyList][nodeInQuestion];
 
     for (let neighbor of neighbors) {
       if (neighbor === endPoint) {
@@ -22,7 +25,7 @@ function bfs(graph, startPoint, endPoint) {
     }
 
   }
-  return false;
+  return false; // or return path
 }
 
 // recursive bfs
