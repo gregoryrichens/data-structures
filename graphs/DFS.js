@@ -1,9 +1,38 @@
 // refer to Graph.js for the structure of the Graph
 
-// iterative dfs
+// ITERATIVE DFS
 
 function depthFirstSearch(graph, startPoint, endPoint) {
-  // initiat
+  // initiate path
+  let path = [];
+  // initiate visited
+  let visited = new Set();
+  // add start to visited
+  visited.add(startPoint);
+  // initiate a stack
+  let stack = [];
+  // add start to stack
+  stack.push(startNode);
+
+  while (stack.length > 0) {
+  // if there is something in the stack
+    let currentNode = stack.pop();
+    // pop it off
+    // add to path
+    path.push(currentNode);
+
+    // if it is what we are looking for, then do what we do
+    if (currentNode === endPoint) { return path // or whatever we do }
+    // for each of its neighbors
+    currentNode[adjacencyList].forEach (neighbor => {
+      if(!visited.has(neighbor)) {
+        visited.add(neighbor);
+        stack.push(neighbor);
+      }
+    })
+      // add to visited
+      // add them to the stack
+  }
 }
 
 // recursive dfs
