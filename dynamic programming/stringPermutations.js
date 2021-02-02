@@ -1,6 +1,6 @@
 function findAllPermutations(string) {
   // base case - if string is <= 1 then we the only permutation is itself
-  if (string.length <= 1) { return new Set([string]) } // why an array and why a set
+  if (string.length <= 1) { return new Set(string) } // why an array and why a set
   // otherwise
   // grab last character in string
   const lastCharacter = string[string.length - 1];
@@ -17,4 +17,12 @@ function findAllPermutations(string) {
       permutations.add(permutation);
     }
   })
+
+  return permutations;
 }
+
+console.log(findAllPermutations('blake'));
+
+// let testString = 'mamma';
+// let testSet = new Set([testString]);
+// console.log(testSet);
