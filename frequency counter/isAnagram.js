@@ -4,7 +4,7 @@ function isAnagram(str1, str2) {
   // storage for first string
   let storage1 = {};
   // storage for second string
-  let storag2 = {};
+  let storage2 = {};
 
   //store value frequency for first string
   for (let i = 0; i < str1.length; i++){
