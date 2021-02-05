@@ -17,3 +17,23 @@ function rand7() {
     return outcomeNumber % 7 + 1;
   }
 }
+
+function rand5() {
+  return Math.floor(Math.random() * 5) + 1;
+}
+
+function rand7Review() {
+  function numberGenerator() {
+    return (rand5() - 1) * 5 + rand5();
+  };
+
+  let randomNumber = numberGenerator();
+
+  while (randomNumber > 21) {
+    randomNumber = numberGenerator();
+  }
+
+  return randomNumber % 7 + 1;
+}
+
+console.log(rand7Review());
