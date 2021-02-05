@@ -16,3 +16,8 @@ function areThereDuplicates() {
   // otherwise return false
   return false;
 }
+
+// DO ALL OF THIS IN ONE LINE
+function areThereDuplicatesOneLine() {
+  return new Set(arguments).size !== arguments.length;
+}
