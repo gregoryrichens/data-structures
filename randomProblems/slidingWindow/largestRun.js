@@ -1,7 +1,5 @@
 function largestRun(array, numberOfDigits) {
-  if (array.length < numberOfDigits) {
-    throw new Error(`you must have at least ${numberOfDigits} in your array`);
-  }
+  if (array.length < numberOfDigits) { return null }
 
   let maxSum = 0;
 
