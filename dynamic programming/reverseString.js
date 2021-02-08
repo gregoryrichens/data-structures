@@ -1,3 +1,4 @@
+// solution if you eat crayons
 function reverse(str){
   // add whatever parameters you deem necessary - good luck!
   if (str.length < 2) { return str }
@@ -13,4 +14,11 @@ function reverse(str){
   }
   reverseHelper(str);
   return storage.join('');
+}
+
+// solution if you are a leet hacksaur
+
+function reverse(str) {
+  if (str.length <= 1) { return str }
+  return reverse(str.slice(1)) + str[0];
 }
