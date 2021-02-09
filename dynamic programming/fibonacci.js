@@ -25,3 +25,14 @@ function fibMemoized(n) {
 
   return recursiveHelper(n);
 }
+
+// bottom up approach
+
+function fibBottomUp(n, arr = [undefined, 1, 1]) {
+  for (let i = 3; i <= n; i++){
+    let res = arr[i - 1] + arr[i - 2];
+    arr[i] = res;
+  }
+
+  return arr[n];
+}
