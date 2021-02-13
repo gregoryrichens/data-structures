@@ -36,3 +36,18 @@ function fibBottomUp(n, arr = [undefined, 1, 1]) {
 
   return arr[n];
 }
+
+// more practice recursive memoized
+function fibMemoizedPractice(n) {
+  let memo = {};
+  memo[1] = 1;
+  memo[2] = 1;
+
+  function fibHelper(n) {
+    if (memo[n]) { return memo[n] }
+    let res =  fibHelper(n-2) + fibHelper(n-1);
+    memo[n] = res;
+
+    return res;
+  }
+}
