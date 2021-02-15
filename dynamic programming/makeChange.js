@@ -53,15 +53,14 @@ function getChangeRecursive(targetAmount, denominations, currentIndex) {
 
 function makeChagePractice(targetAmount, denominations) {
   nCentsCombosArray = new Array(targetAmount + 1).fill(0);
-
   nCentsCombosArray[0] = 1;
 
   denominations.forEach(coin => {
-    for (let currentAmount = coin; currentAmount <= targetAmount; currentAmount++){
+    for (let currentAmount = coin; i <= targetAmount; currentAmount++){
       let remainder = currentAmount - coin;
-      nCentsCombosArray[currentAmount] += nCentsCombosArray[remainder];
+      nCentsCombosArray[currentAmount] += nCentsCombosArray[remainder]
     }
-  });
+  })
 
   return nCentsCombosArray[targetAmount];
 }
