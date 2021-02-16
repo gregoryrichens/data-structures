@@ -39,6 +39,7 @@ function getChangeRecursive(targetAmount, denominations, currentIndex) {
     let numPossibilities = 0;
 
     while (amountLeft >= 0) {
+      // this ensures we run the function for every coin deenominatin in our array
       numPossibilities += recursiveHelper(amountLeft, denominations, currentIndex + 1);
       amountLeft -= currentCoin;
     }
@@ -51,7 +52,7 @@ function getChangeRecursive(targetAmount, denominations, currentIndex) {
   // return the recursive function
 }
 
-function makeChagePractice(targetAmount, denominations) {
+function makeChangePractice(targetAmount, denominations) {
   nCentsCombosArray = new Array(targetAmount + 1).fill(0);
   nCentsCombosArray[0] = 1;
 
@@ -63,4 +64,27 @@ function makeChagePractice(targetAmount, denominations) {
   })
 
   return nCentsCombosArray[targetAmount];
+}
+
+function makeChangePracticeTopDown(amountLeft, denominations, currentIndex = 0) {
+  // if amount left is zero then we increment the count
+  if (amountLeft === 0) { return 1 }
+  // if we reach a negative amount then we did not reach the target exactly and count doesn't increase
+  if (amountLeft < 0) { return 0 }
+  // if we run out of coins then the count doesn't increase
+  if (currentIndex === denominations.length) { return 0 }
+
+  // variable for tracking solutions
+  let solutions = 0;
+
+  // we want to loop while the amount left is greater than or equal to zero
+  while (amountLeft >= 0) {
+    // recurse with the given amount but with the next coin in the series
+    solutions += makeChangePracticeTopDown(amountLeft, denominations, currentIndex + 1);
+    // subtract the current coing for the amount left
+    amountLeft -= denominations[currentIndex];
+  }
+
+  // return solution count
+  return solutions;
 }
