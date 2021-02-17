@@ -46,3 +46,36 @@ function maxDuffelBagValue(cakeTypes, weightCapacity) {
 
   return maxValuesAtCapacities[weightCapacity];
 }
+
+// unbounded knapsack practice
+
+// use the common method of an array, with indexes representing weight and value referencing monetary value
+// loop through the array
+// at each possible weight, we can try different combinations by looking at the value at previous weights
+// ie the max values at currentweight - each possble cake weight + the values of each cake
+// whichever value total is largest is the max value at the current weight
+
+function maxDuffelBagValuePractice(bagCapacity, cakeTypes) {
+  let maxValuesAtCapacities = new Array(bagCapacity + 1).fill(0);
+
+  for (let currentCapacity = 0; currentCapacity <= bagCapacity; currentCapacity++){
+    let maxCurrentValue = 0;
+
+    for (let i = 0; i < cakeTypes.length; i++){
+      let currentCake = cakeType[i];
+
+      // if weight is 0 and value is non zero return infinity
+      if (currentCake.weight === 0 && currentCake.value !== 0) {return Infinity }
+
+      if (currentCake.weight <= currentCapacity) {
+        let potentialMaxValue = maxValuesAtCapacities[i - currentCake.weight] + currentCake.value;
+
+        maxCurrentValue = Math.max(maxCurrentValue, potentialMaxValue);
+      }
+    }
+
+    maxValuesAtCapacities[currentCapacity] = maxCurrentValue;
+  }
+
+  return maxValuesAtCapacities[bagCapacity];
+}
