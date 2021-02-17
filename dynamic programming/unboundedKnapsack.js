@@ -55,27 +55,30 @@ function maxDuffelBagValue(cakeTypes, weightCapacity) {
 // ie the max values at currentweight - each possble cake weight + the values of each cake
 // whichever value total is largest is the max value at the current weight
 
-function maxDuffelBagValuePractice(bagCapacity, cakeTypes) {
-  let maxValuesAtCapacities = new Array(bagCapacity + 1).fill(0);
+function maxDuffelBagValuePractice(weightCapacity, cakeTypes) {
+  maxValueAtCapacity = new Array(weightCapacity + 1).fill(0);
 
-  for (let currentCapacity = 0; currentCapacity <= bagCapacity; currentCapacity++){
-    let maxCurrentValue = 0;
+  for (let currentCapacity = 0; currentCapacity <= weightCapacity; currentCapacity++){
+    let maxCurrentValue = maxValueAtCapacity[currentCapacity];
 
     for (let i = 0; i < cakeTypes.length; i++){
-      let currentCake = cakeType[i];
-
-      // if weight is 0 and value is non zero return infinity
-      if (currentCake.weight === 0 && currentCake.value !== 0) {return Infinity }
-
+      let currentCake = cakeTypes[i];
+      // infinite value
+      if (currentCake.weight === 0 && currentCake.value !== 0) {
+        return Infinity;
+      }
       if (currentCake.weight <= currentCapacity) {
-        let potentialMaxValue = maxValuesAtCapacities[i - currentCake.weight] + currentCake.value;
-
+        // potential max is max value at current weight minus cake weight + cake value
+        let potentialMaxValue = currentCake.value + maxValuesAtCapacity[currentCapacity - currentCake.weight];
+        // set max current value to whatever is bigger
         maxCurrentValue = Math.max(maxCurrentValue, potentialMaxValue);
       }
     }
 
-    maxValuesAtCapacities[currentCapacity] = maxCurrentValue;
+    // set currentCapacity to max current value
+    maxValuesAtCapacity[currentCapacity] = maxCurrentValue;
   }
 
-  return maxValuesAtCapacities[bagCapacity];
+  // grab whatever the value is at weightCapacity
+  return maxValuesAtCapacity[weightCapacity];
 }
