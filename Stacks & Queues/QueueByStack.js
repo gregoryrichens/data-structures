@@ -30,7 +30,7 @@ class Stack {
   }
 }
 
-// naive solution
+// only move items over to stack 2 when stack 2 is empty
 class Queue {
   constructor() {
     this.storageStack = new Stack();
@@ -41,16 +41,14 @@ class Queue {
     this.storageStack.push(item);
   }
 
-  dequeue(item) {
-    for (let i = this.storageStack.length; i > 0; i--){
-      this.popStack.push(this.storageStack.pop());
-    }
-    let dequeuedItem = this.popStack.pop();
-
-    for (let j = this.popStack.length; j > 0; j--){
-      this.storageStack.push(this.popStack.pop());
+  dequeue() {
+    // if the popstack is empty move everything from storagestack
+    if(this.popStack.length === 0) {
+      for (let i = this.storageStack.length; i > 0; i--){
+        this.popStack.push(this.storageStack.pop());
+      }
     }
 
-    return dequeuedItem;
+    return this.popStack.pop();
   }
 }
