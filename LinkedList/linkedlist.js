@@ -202,6 +202,8 @@ class SinglyLinkedList{
 
     for (let i = 0; i < this.length; i++){
       next = node.next;
+      // this has multiple effects bc several variables are
+      // referencing 'node' - this is how head and tail get sorted
       node.next = prev;
       prev = node;
       node = next;
