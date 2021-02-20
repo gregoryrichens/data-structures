@@ -6,51 +6,58 @@ class Node{
   }
 }
 
-class DoublyLinkedList {
+class DoublyLinkedList{
   constructor(){
       this.head = null;
       this.tail = null;
       this.length = 0;
   }
+
   push(val){
-    let newNode = new Node(val);
-    if(this.length === 0) {
-        this.head = newNode;
-        this.tail = newNode;
-    } else {
-        let prevTail = this.tail;
-        this.tail = newNode;
-        prevTail.next = this.tail;
-        this.tail.prev = prevTail;
-    }
-    this.length++;
-    return this;
+      var node = new Node(val);
+      if (this.head === null) {
+          this.head = node;
+          this.tail = this.head;
+      } else {
+          this.tail.next = node;
+          node.prev = this.tail;
+          this.tail = node;
+      }
+      this.length++;
+      return this;
   }
-  unshift(val){
-    let newNode = new Node(val);
-    if(this.length === 0) {
-        return this.push(val);
-    } else {
-        let oldHead = this.head;
-        oldHead.prev = newNode;
-        newNode.next = oldHead;
-        this.head = newNode;
-    }
-    this.length++;
-    return this;
+
+  get(index) {
+      let currentNode, count;
+      // if the index is below zero or above existing indeces
+      if (index < 0 || index >= this.length) { return null }
+      // if closer to end
+      if (index > this.length / 2) {
+          currentNode = this.tail;
+          count = this.length - 1;
+          while(count !== index) {
+              currentNode = currentNode.prev;
+              count--;
+          }
+      }
+      // if closer to beginning
+      else {
+          currentNode = this.head;
+          count = 0;
+          while(count !== index) {
+              currentNode = currentNode.next;
+              count++;
+          }
+      }
+      return currentNode;
   }
-  shift(){
-    let returnNode = this.head;
-    if (this.length === 0) { return undefined }
-    if (this.length === 1) {
-        this.head = null;
-        this.tail = null;
-    } else {
-        this.head = this.head.next;
-        this.head.prev = null;
-    }
-    this.length--;
-    returnNode.next = null;
-    return returnNode;
+
+  set(index, value){
+      let nodeInQuestion = this.get(index);
+      if(nodeInQuestion) {
+          nodeInQuestion.val = value;
+          return true;
+      }
+      return false;
   }
 }
