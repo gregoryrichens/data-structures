@@ -71,8 +71,21 @@ class DoublyLinkedList{
         node.next = prev;
         node.prev = next;
         prev = node;
-        node = next
+        node = next;
     }
     return this;
+  }
+  containsCycle(){
+    let storage = new Set();
+    let current = this.head;
+    while(current.next) {
+      let objectified = {
+        value: current.val,
+        next: current.next,
+      };
+      if(storage.has(objectified)) { return true }
+      storage.add(objectified);
+    }
+    return false;
   }
 }
