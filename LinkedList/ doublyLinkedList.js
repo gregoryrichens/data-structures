@@ -87,5 +87,15 @@ class DoublyLinkedList{
       storage.add(objectified);
     }
     return false;
+
+    // runner approach
+    // let firstRunner = this.head;
+    // let secondRunner = this.head;
+    // while(firstRunner && firstRunner.next) {
+      // firstRunner = firstRunner.next.next;
+      // seecondRunner = secondRunner.next;
+      // if (firstRunner === secondRunner) { return true }
+    // }
+    // return false;
   }
 }
