@@ -36,4 +36,11 @@ class BinarySearchTree {
       return false;
     }
   }
+
+  find(value) {
+    if(this.data === value) { return true }
+    if(this.data === null) { return false }
+    if(value > this.data) { return this.right.find(value) }
+    if(value < this.data) { return this.left.find(value) }
+  }
 }
