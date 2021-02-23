@@ -44,3 +44,5 @@ class BinarySearchTree {
     if(value < this.data) { return this.left.find(value) }
   }
 }
+
+export default BinarySearchTree;
