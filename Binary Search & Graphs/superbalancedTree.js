@@ -120,3 +120,63 @@ function isBalanced(treeRoot) {
 
   return true;
 }
+
+// write a depth first search that tracks height
+// any time a node has no left or right compare against max/min
+// check each time if max - min is greater than 1
+
+function superbalanced(root) {
+  let min = 0;
+  let max = 0;
+  let superbalancedBool = true;
+
+  function recursiveDFS(node, depth) {
+    if (node.left === null && node.right === null) {
+      min = Math.min(min, depth);
+      max = Math.max(max, depth);
+      if (max - min > 1) {
+        superbalancedBool = false;
+        return;
+      }
+    }
+    if (node.left) { recursiveDFS(node.left), depth + 1 }
+    if (node.right) {recursiveDFS(node.right), depth + 1 }
+  }
+
+  recursiveDFS(root);
+
+  return superbalancedBool;
+}
+
+// iterative approach - will need to store node and height in stack
+// if the root doesn't exist return true
+// initiate stack
+// store node pair
+// while there is something in the stack
+// pop it off and
+// if there are no left and right see if the height is in our height storage
+// if it's not check number in storage if not add it
+// if length is greater than two or difference is greater than two return false
+
+function superbalancedIterative(root) {
+  if (!root) { return true }
+
+  let stack = [];
+  let heights = [];
+
+  stack.push([root, 1]);
+
+  while(stack.length) {
+    let node = stack.pop();
+    if (node[0].left === null & null[0].right === null) {
+      if(heights.indexOf(node[1]) < 0) {
+        heights.push(node[1]);
+      }
+    }
+    if(heights.length > 2 || Math.abs(heights[1] - heights[0]) > 1) { return false }
+    if(node.left) { stack.push([node.left, node[1] + 1]) }
+    if(node.right) { stack.push([node.right, node[1] + 1]) }
+  }
+
+  return true;
+}
