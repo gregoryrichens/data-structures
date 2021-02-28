@@ -40,14 +40,16 @@ function insertionSort(array) {
   return array;
 }
 
-function thisIsHowYouDoInsertionSort(array) {
+function insertionSortPractice(array){
+  // we need to move through everything in the array past the first item
+  // the first item is considered sorted already
+    // for every item from the unsorted, compare it to every item in the sorted
   for (let i = 1; i < array.length; i++){
     for (let j = i - 1; j > -1; j--){
       if(array[j+1] < array[j]) {
-        [array[j], array[j+1]] = [array[j+1], array[j]];
+        [array[j],array[j+1]] = [array[j+1],array[j]];
       }
     }
   }
-
   return array;
 }
