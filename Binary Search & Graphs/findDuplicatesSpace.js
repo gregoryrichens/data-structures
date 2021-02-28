@@ -37,3 +37,12 @@ function findDuplicate(integers) {
 }
 
 // recursion would cause O(n) space complexity, must iterate
+
+findDuplicateSpacePractice(integers) {
+  // store the integer array
+  // store the number of allowed integers in array
+  // create an iterative loop (while the length of integers is greater than 2)
+    // cut the loop in half
+    // set the array in question to whatever array has more elements than it should - this is the array that contains the duplicate
+
+}
