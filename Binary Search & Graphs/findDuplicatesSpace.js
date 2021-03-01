@@ -38,11 +38,43 @@ function findDuplicate(integers) {
 
 // recursion would cause O(n) space complexity, must iterate
 
-findDuplicateSpacePractice(integers) {
-  // store the integer array
-  // store the number of allowed integers in array
-  // create an iterative loop (while the length of integers is greater than 2)
-    // cut the loop in half
-    // set the array in question to whatever array has more elements than it should - this is the array that contains the duplicate
+function findDuplicateSpacePractice(integers) {
+  // there is a lowest possible number
+  let floor = 1;
+  // there is a highest possible number
+  let ceiling = integers.length - 1;
 
+  while (floor < ceiling) {
+    // we can create a midpoint
+    let midpoint = Math.min((ceiling - floor) / 2 + floor);
+    // create a lower floor and ceiling
+    let lowerFloor = floor;
+    let lowerCeiling = midpoint;
+    // create an upper floor and ceiling
+    let upperFloor = midpoint + 1;
+    let upperCeiling = ceiling;
+
+    let lowerCount = 0;
+    let possibleLower = lowerCeiling - lowerFloor + 1;
+    // loop through array and increment a count each time something is in the lower half
+    for (let i = 0; i < integers.length; i++){
+      if (integers[i] >= lowerFloor && integers[i] <= lowerCeiling) {
+        lowerCount++;
+      }
+    }
+    // if the lower half is greater than the possible number in lower half
+      // change the possible ceiling to the lower half ceiling
+    // otherwise (upper half is larger) change possible floor to upper floor
+    // this will continue as long as lowest possible is less than highest possible
+      // once this is no longer true, we will just have an array of duplicates - the floor will be our duplicate
+    if (lowerCount > possibleLower) {
+      floor = lowerFloor;
+      ceiling = lowerCeiling;
+    } else {
+      floor = upperFloor;
+      ceiling = upperCeiling;
+    }
+  }
+
+  return floor;
 }
