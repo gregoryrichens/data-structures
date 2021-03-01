@@ -44,41 +44,38 @@ function mergeSort(array) {
 
 
 function merge(arr1, arr2) {
-  let returnArray = [];
+  let mergedArray = [];
   let countOne = 0;
   let countTwo = 0;
-
-  while (countOne < arr1.length && countTwo < arr2.length) {
-    if (arr1[countOne] < arr2[countTwo]) {
-      returnArray.push(arr1[countOne]);
+  while(countOne < arr1.length && countTwo < arr2.length) {
+    if(arr1[countOne] < arr2[countTwo]) {
+      mergedArray.push(arr1[countOne]);
       countOne++;
     } else {
-      returnArray.push(arr2[countTwo]);
+      mergedArray.push(arr2[countTwo]);
       countTwo++;
     }
   }
 
   while (countOne < arr1.length) {
-    returnArray.push(arr1[countOne]);
+    mergedArray.push(arr1[countOne]);
     countOne++;
   }
-  while (countOne < arr2.length) {
-    returnArray.push(arr2[countTwo]);
-    countOne++;
+  while (countTwo < arr2.length) {
+    mergedArray.push(arr2[countTwo]);
+    countTwo++;
   }
 
-  return returnArray;
+  return mergedArray;
 }
 
-function thisIsHowYouDoMergeSort(array) {
-  if (array.length <= 1) {
-    return array;
-  }
-
+function mergeSortPractice(array) {
+  if(array.length <= 1) { return array }
   let midpoint = Math.floor(array.length / 2);
-  let left = thisIsHowYouDoMergeSort(array.slice(0, midpoint));
-  let right = thisIsHowYouDoMergeSort(array.slice(midpoint));
 
-  return merge(left, right);
+  let left = mergeSortPractice(array.slice(0, midpoint));
+  let right = mergeSortPractice(midpoint);
+
+  return merge(left,right);
 }
 
