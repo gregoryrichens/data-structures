@@ -79,3 +79,40 @@ function mergeSortPractice(array) {
   return merge(left,right);
 }
 
+function mergePractice2 (arr1, arr2) {
+  let pointerOne = 0;
+  let pointerTwo = 0;
+  let mergedArray = [];
+
+  while (pointerOne < arr1.length && pointerTwo < arr2.length) {
+    if (arr1[pointerOne] < arr2[pointerTwo]) {
+      mergedArray.push(arr1[pointerOne]);
+      pointerOne++;
+    } else {
+      mergedArray.push(arr2[pointerTwo]);
+      pointerTwo++;
+    }
+  }
+
+  while (pointerOne < arr1.length) {
+    mergedArray.push(arr1[pointerOne]);
+    pointerOne++;
+  }
+
+  while (pointerTwo < arr2.length) {
+    mergedArray.push(arr2[pointerTwo]);
+    pointerTwo++;
+  }
+
+  return mergedArray;
+}
+
+function mergeSortPractice2(array) {
+  if(array.length <= 1) { return array }
+  let midpoint = Math.floor(array.length / 2);
+  let left = mergeSortPractice2(array.slice(0, midpoint));
+  let right = mergeSortPractice2(array.slice(midpoint));
+
+  return mergePractice2(left, right);
+}
+
